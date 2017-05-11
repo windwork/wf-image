@@ -11,10 +11,10 @@ require_once '../lib/strategy/GD.php';
  */
 function testThumb(\wf\image\IImage $img, $width, $height, $dist, $isCut = true, $cutPos = 5) 
 {
-	$thumbCtx = $img->thumb($width, $height, $isCut, $cutPos);
-	if($thumbCtx) {
-		file_put_contents($dist, $thumbCtx);
-	}
+    $thumbCtx = $img->thumb($width, $height, $isCut, $cutPos);
+    if($thumbCtx) {
+        file_put_contents($dist, $thumbCtx);
+    }
 }
 
 /**
@@ -22,8 +22,8 @@ function testThumb(\wf\image\IImage $img, $width, $height, $dist, $isCut = true,
  */
 function testWatermark(\wf\image\IImage $img, $dist, $watermarkPlace = 9, $quality = 95, $waterFile = 'src_image/logo.png') 
 {
-	$ret = $img->watermark($waterFile, $watermarkPlace, $quality);
-	file_put_contents($dist, $ret);
+    $ret = $img->watermark($waterFile, $watermarkPlace, $quality);
+    file_put_contents($dist, $ret);
 }
 
 $img = new \wf\image\strategy\GD();
