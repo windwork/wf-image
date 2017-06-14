@@ -19,7 +19,7 @@ use \wf\image\Exception;
  * @link        http://docs.windwork.org/manual/wf.image.html
  * @since       0.1.0
  */
-class GD implements \wf\image\IImage 
+class GD implements \wf\image\ImageInterface 
 {
     /**
      * 图片相关信息
@@ -55,7 +55,7 @@ class GD implements \wf\image\IImage
     /**
      * 
      * {@inheritDoc}
-     * @see \wf\image\IImage::setImage()
+     * @see \wf\image\ImageInterface::setImage()
      * @throws \wf\image\Exception
      */
     public function setImage($imageContent) 
@@ -72,7 +72,7 @@ class GD implements \wf\image\IImage
     /**
      * 
      * {@inheritDoc}
-     * @see \wf\image\IImage::setThumbBgColor()
+     * @see \wf\image\ImageInterface::setThumbBgColor()
      */
     public function setBgColor($r, $g, $b) 
     {
@@ -82,7 +82,7 @@ class GD implements \wf\image\IImage
     /**
      * 
      * {@inheritDoc}
-     * @see \wf\image\IImage::thumb()
+     * @see \wf\image\ImageInterface::thumb()
      */
     public function thumb($thumbWidth, $thumbHeight, $isCut = true, $cutPlace = 5, $quality = 95) 
     {
@@ -235,7 +235,7 @@ class GD implements \wf\image\IImage
     /**
      * 
      * {@inheritDoc}
-     * @see \wf\image\IImage::watermark()
+     * @see \wf\image\ImageInterface::watermark()
      */
     public function watermark($watermarkFile = 'static/images/watermark.png', $watermarkPlace = 9, $quality = 95) 
     {

@@ -2,14 +2,14 @@
 PHP_SAPI == 'cli' || die('access denied');
 $start = microtime(1);
 
-require_once '../lib/IImage.php';
+require_once '../lib/ImageInterface.php';
 require_once '../lib/Exception.php';
 require_once '../lib/strategy/GD.php';
 
 /**
  * 
  */
-function testThumb(\wf\image\IImage $img, $width, $height, $dist, $isCut = true, $cutPos = 5) 
+function testThumb(\wf\image\ImageInterface $img, $width, $height, $dist, $isCut = true, $cutPos = 5) 
 {
     $thumbCtx = $img->thumb($width, $height, $isCut, $cutPos);
     if($thumbCtx) {
@@ -20,7 +20,7 @@ function testThumb(\wf\image\IImage $img, $width, $height, $dist, $isCut = true,
 /**
  * 
  */
-function testWatermark(\wf\image\IImage $img, $dist, $watermarkPlace = 9, $quality = 95, $waterFile = 'src_image/logo.png') 
+function testWatermark(\wf\image\ImageInterface $img, $dist, $watermarkPlace = 9, $quality = 95, $waterFile = 'src_image/logo.png') 
 {
     $ret = $img->watermark($waterFile, $watermarkPlace, $quality);
     file_put_contents($dist, $ret);

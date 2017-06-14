@@ -5,7 +5,7 @@ Windwork 图片处理组件
 
 ## 生成缩略图
 ```
-$img = di()->image();
+$img = image();
 // 设置源图片内容
 $img->setImage(file_get_contents('src_image/1.png'));
 
@@ -24,7 +24,7 @@ $img->thumb(100, 200, false);
 ## 打水印
 
 ```
-$img = di()->image();
+$img = image();
 
 // 设置源图片内容
 $img->setImage(file_get_contents('src_image/1.png'));
@@ -45,7 +45,7 @@ namespace wf\image;
 /**
  * 图像处理接口
  */
-interface IImage {
+interface ImageInterface {
     
     /**
      * 设置图片二进制内容

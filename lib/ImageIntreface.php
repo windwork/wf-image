@@ -17,7 +17,7 @@ namespace wf\image;
  * @link        http://docs.windwork.org/manual/wf.image.html
  * @since       0.1.0
  */
-interface IImage 
+interface ImageInterface 
 {
     
     /**
