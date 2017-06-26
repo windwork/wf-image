@@ -30,6 +30,7 @@ interface ImageInterface
     
     /**
      * 生成缩略图
+     * 
      * 宽度不小于$thumbWidth或高度不小于$thumbHeight的图片生成缩略图
      * 建议缩略图和被提取缩略图的文件放于同一目录，文件名为“被提取缩略图文件.thumb.jpg”
      *
@@ -45,6 +46,7 @@ interface ImageInterface
     
     /**
      * 给图片打水印
+     * 
      * 建议用gif或png图片做水印，jpg不能设置透明，故不推荐用
      *
      * @param string $watermarkFile = 'static/images/watermark.png' 水印图片

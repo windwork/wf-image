@@ -53,7 +53,6 @@ class GD implements \wf\image\ImageInterface
     }
     
     /**
-     * 
      * {@inheritDoc}
      * @see \wf\image\ImageInterface::setImage()
      * @throws \wf\image\Exception
@@ -70,7 +69,6 @@ class GD implements \wf\image\ImageInterface
     }
 
     /**
-     * 
      * {@inheritDoc}
      * @see \wf\image\ImageInterface::setThumbBgColor()
      */
@@ -80,7 +78,6 @@ class GD implements \wf\image\ImageInterface
     }
     
     /**
-     * 
      * {@inheritDoc}
      * @see \wf\image\ImageInterface::thumb()
      */
@@ -95,6 +92,7 @@ class GD implements \wf\image\ImageInterface
     
     /**
      * 不裁剪方式生成缩略图
+     * 
      * @param int $thumbWidth
      * @param int $thumbHeight
      * @return bool | string
@@ -158,6 +156,7 @@ class GD implements \wf\image\ImageInterface
     
     /**
      * 裁剪方式生成缩略图
+     * 
      * @param int $thumbWidth
      * @param int $thumbHeight
      * @param int $cutPlace = 5 1：x左y上, 2：x中y上， 3：x右y上, 4：x左y中， 5：x中y中， 6：x右y中，7：x左y下， 8：x中y下，9：x右y下 
@@ -233,7 +232,6 @@ class GD implements \wf\image\ImageInterface
     }
 
     /**
-     * 
      * {@inheritDoc}
      * @see \wf\image\ImageInterface::watermark()
      */

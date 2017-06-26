@@ -5,7 +5,7 @@ Windwork 图片处理组件
 
 ## 生成缩略图
 ```
-$img = image();
+$img = wfImage();
 // 设置源图片内容
 $img->setImage(file_get_contents('src_image/1.png'));
 
@@ -24,7 +24,7 @@ $img->thumb(100, 200, false);
 ## 打水印
 
 ```
-$img = image();
+$img = wfImage();
 
 // 设置源图片内容
 $img->setImage(file_get_contents('src_image/1.png'));
