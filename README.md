@@ -3,6 +3,17 @@ Windwork 图片处理组件
 支持图片缩略图和打水印，兼容各种第三方云存贮。
 处理图片后，为方便云存贮处理，不直接保存图片，而是返回图片二进制内容。
 
+## 安装
+该组件已包含在Windwork框架中，如果你已安装Windwork框架则可以直接使用。
+
+- 安装方式一：通过composer安装（推荐）
+```
+composer require windwork/wf
+```
+
+- 安装方式二：传统方式安装
+[下载源码](https://github.com/windwork/wf/releases)后，解压源码到项目文件夹中，然后require_once $PATH_TO_WF/core/lib/Loader.php文件，即可自动加载组件中的类。
+
 ## 生成缩略图
 ```
 $img = wfImage();
