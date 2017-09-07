@@ -4,7 +4,7 @@ $start = microtime(1);
 
 require_once '../lib/ImageInterface.php';
 require_once '../lib/Exception.php';
-require_once '../lib/strategy/GD.php';
+require_once '../lib/adapter/GD.php';
 
 /**
  * 
@@ -26,7 +26,7 @@ function testWatermark(\wf\image\ImageInterface $img, $dist, $watermarkPlace = 9
     file_put_contents($dist, $ret);
 }
 
-$img = new \wf\image\strategy\GD();
+$img = new \wf\image\adapter\GD();
 
 # 缩略图
 // test png

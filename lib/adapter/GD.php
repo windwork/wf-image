@@ -7,14 +7,14 @@
  * @copyright Copyright (c) 2008-2017 Windwork Team. (http://www.windwork.org)
  * @license   http://opensource.org/licenses/MIT
  */
-namespace wf\image\strategy;
+namespace wf\image\adapter;
 
 use \wf\image\Exception;
 
 /**
  * 图片处理类，使用GD2生成缩略图和打水印 
  *
- * @package     wf.image.strategy
+ * @package     wf.image.adapter
  * @author      cm <cmpan@qq.com>
  * @link        http://docs.windwork.org/manual/wf.image.html
  * @since       0.1.0
