@@ -7,7 +7,7 @@
 		"thumb",
 		"image"
 	],
-	"version" : "0.7.0",
+	"version" : "0.7.1",
 	"time" : "2017-06-26 17:30:00",
 	"require" : {
 		"php" : ">=5.5.0"
