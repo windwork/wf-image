@@ -24,7 +24,7 @@ interface ImageInterface
      * 设置图片二进制内容
      * 
      * @param string $imageContent
-     * @return \wf\image\Image
+     * @return \wf\image\ImageInterface
      */
     public function setImage($imageContent);
     
@@ -39,10 +39,11 @@ interface ImageInterface
      * @param bool $isCut = true 是否裁剪图片，true）裁掉超过比例的部分；false）不裁剪图片，图片缩放显示，增加白色背景
      * @param int $cutPlace = 5  裁剪保留位置 1:左上, 2：中上， 3右上, 4：左中， 5：中中， 6：右中，7：左下， 8：中下，9右下
      * @param int $quality = 95  生成的缩略图质量
+     * @param string $thumbType = 'jpg' 缩略图图片格式，同时是图片后缀，jpg/png/webp
      * @return bool|string
      * @throws \wf\image\Exception
      */
-    public function thumb($thumbWidth, $thumbHeight, $isCut = true, $cutPlace = 5, $quality = 95);
+    public function thumb($thumbWidth, $thumbHeight, $isCut = true, $cutPlace = 5, $quality = 95, $thumbType = 'jpg');
     
     /**
      * 给图片打水印

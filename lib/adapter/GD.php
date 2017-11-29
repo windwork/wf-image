@@ -39,6 +39,11 @@ class GD implements \wf\image\ImageInterface
      * @var array
      */
     protected $bgColor = [255, 255, 255];
+
+    /**
+     * @var string
+     */
+    protected $thumbType = 'jpg';
         
     /**
      * 构造函数中设置内存限制多一点以能处理较大图片
@@ -81,12 +86,16 @@ class GD implements \wf\image\ImageInterface
      * {@inheritDoc}
      * @see \wf\image\ImageInterface::thumb()
      */
-    public function thumb($thumbWidth, $thumbHeight, $isCut = true, $cutPlace = 5, $quality = 95) 
+    public function thumb($thumbWidth, $thumbHeight, $isCut = true, $cutPlace = 5, $quality = 95, $thumbType = 'jpg') 
     {
+        if (!in_array($thumbType, ['jpg', 'png', 'webp'])) {
+            throw new Exception('thumb image type must be webp|jpg|png');
+        }
+	
         if($isCut) {
-            return $this->thumbCutOut($thumbWidth, $thumbHeight, $cutPlace, $quality);
+            return $this->thumbCutOut($thumbWidth, $thumbHeight, $cutPlace, $quality, $thumbType);
         } else {
-            return $this->thumbUnCut($thumbWidth, $thumbHeight, $quality);
+            return $this->thumbUnCut($thumbWidth, $thumbHeight, $quality, $thumbType);
         }
     }
     
@@ -98,7 +107,7 @@ class GD implements \wf\image\ImageInterface
      * @return bool | string
      * @throws \wf\image\Exception
      */
-    private function thumbUnCut($thumbWidth, $thumbHeight, $quality) 
+    private function thumbUnCut($thumbWidth, $thumbHeight, $quality, $thumbType = 'jpg') 
     {
         list($srcW, $srcH) = $this->imgInfo;
         
@@ -141,7 +150,15 @@ class GD implements \wf\image\ImageInterface
         
         // 为兼容云存贮设备，不直接把缩略图写入文件系统，而是返回文件内容
         ob_start();
-        imagejpeg($thumbImage, null, $quality);
+
+        if ($thumbType == 'webp') {
+            imagewebp($thumbImage, null, $quality);
+        } elseif ($thumbType == 'png') {
+            imagepng($thumbImage, null, floor($quality/10));
+        } else {
+            imagejpeg($thumbImage, null, $quality);
+        }
+
         $thumb = ob_get_clean();
 
         imagedestroy($attachImage);
@@ -163,7 +180,7 @@ class GD implements \wf\image\ImageInterface
      * @return bool | string
      * @throws \wf\image\Exception
      */
-    private function thumbCutOut($thumbWidth, $thumbHeight, $cutPlace = 5, $quality = 95) 
+    private function thumbCutOut($thumbWidth, $thumbHeight, $cutPlace = 5, $quality = 95, $thumbType = 'jpg') 
     {
         list($srcW, $srcH) = $this->imgInfo;
         
@@ -204,7 +221,7 @@ class GD implements \wf\image\ImageInterface
             }
         }
         
-        // 缩略图一律用jpg格式文件，如果不设置缩略图保存路径则保存到原始文件所在目录
+        // 如果不设置缩略图保存路径则保存到原始文件所在目录
         $thumbImage = imagecreatetruecolor($thumbWidth, $thumbHeight);
         if($this->imgInfo['mime'] == 'image/gif') {
             imagecolortransparent($attachImage, imagecolorallocate($attachImage, $this->bgColor[0], $this->bgColor[1], $this->bgColor[2]));
@@ -215,10 +232,18 @@ class GD implements \wf\image\ImageInterface
         
         // 重采样拷贝部分图像并调整大小到$thumbImage
         imagecopyresampled($thumbImage, $attachImage ,0, 0, $srcX, $srcY, $thumbWidth, $thumbHeight, $imgW, $imgH);
-        
+
         // 为兼容云存贮设备，这里不直接把缩略图写入文件系统
         ob_start();
-        imagejpeg($thumbImage, null, $quality);
+
+        if ($thumbType == 'webp') {
+            imagewebp($thumbImage, null, $quality);
+        } elseif ($thumbType == 'png') {
+            imagepng($thumbImage, null, floor($quality/10));
+        } else {
+            imagejpeg($thumbImage, null, $quality);
+        }
+
         $thumb = ob_get_clean();
 
         imagedestroy($attachImage);
